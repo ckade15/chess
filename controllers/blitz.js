@@ -12,6 +12,7 @@ exports.getBlitz = async (req, res, next) => {
                 data: "Blitz leaderboard is empty"
             });
         }
+        
         res.status(200).json({
             success: true,
             count: blitz.length,

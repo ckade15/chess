@@ -2,6 +2,7 @@
 const express = require('express');
 const dotenv = require('dotenv');
 const colors = require('colors');
+const cors = require('cors');
 const standard = require('./routes/standard');
 const blitz = require('./routes/blitz');
 const rapid = require('./routes/rapid');
@@ -16,12 +17,20 @@ connectDB();
 
 // Init app routes for API
 const app = express();
+
+
 // Needed to parse json body
+app.use(function(req, res, next) {
+    res.header("Access-Control-Allow-Origin", "*"); // update to match the domain you will make the request from
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, Sec-Fetch-Mode");
+    next();
+  });
 app.use(express.json());
 app.use('/api/v1/standard', standard);
 app.use('/api/v1/blitz', blitz);
 app.use('/api/v1/rapid', rapid);
 app.use(bodyParser.urlencoded({ extended: true }));
+
 
 
 
