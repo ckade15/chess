@@ -35,7 +35,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 
 app.get('/', (req, res) => {
-    res.send("Hello")
+    res.send("FIDE API");
 });
 
 const PORT = process.env.PORT || 5001;
